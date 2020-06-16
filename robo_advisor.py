@@ -1,3 +1,19 @@
+
+#Function: check if Stock symbol is valid
+def valid_symb_number(stk_symb):
+    validity = 0
+    number_list = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
+    for letter in stk_symb:
+        if len(stk_symb) > 4 or len(stk_symb) < 4:
+            validity += 1
+        elif letter in number_list:
+            validity += 1
+        else:
+            pass
+        return validity
+
+
+
 print("-------------------------")
 print("SELECTED SYMBOL: XYZ")
 print("-------------------------")
@@ -17,10 +33,46 @@ print("-------------------------")
 
 
 #prompt the user to input one stock or cryptocurrency (ex. "MSFT" or "AAPL")
-#allow the user to speciy multiple sybmbols in the same request
-#also prompt the user to specify additional inputs such as 1. Risk Tolerance, among others
-
+#allow the user to specify multiple sybmbols in the same request
 #Peform validations on user inputs - ensure characterlength for stock symbols - ensure characters are not numeric
+symb_list = []
+print("Hello, to being please follow the instructions below:")
+print("                                                    ")
+while True:
+    prompt = "Please enter the ticker symbols of the companies you wish to research (ex. 'MSFT')\nWe'll keep adding more symbols until you're finished. When you're finished, type 'Done'.\n Type Here: "
+    stk_symb = input(prompt)
+    if stk_symb == "Done" or stk_symb =="done" or stk_symb == "DONE":
+        print("                   ")
+        print("Done adding ticker symbols!")
+        break
+    elif valid_symb_number(stk_symb) >= 1:
+        print("                   ")
+        print("Stock ticker is invalid, please enter a valid stock ticker with 4 letter to represent a company.")
+        print("                   ")
+    else:
+        symb_list.append(stk_symb)
+
+print("                   ")
+print("-------------------------")
+print("Selected Symbols: ")
+for symbol in symb_list:
+    print(symbol)
+print("-------------------------")
+print("REQUESTING STOCK MARKET DATA...")
+print("REQUEST AT: 2018-02-20 02:00pm")
+print("-------------------------")
+print("LATEST DAY: 2018-02-20")
+print("LATEST CLOSE: $100,000.00")
+print("RECENT HIGH: $101,000.00")
+print("RECENT LOW: $99,000.00")
+print("-------------------------")
+print("RECOMMENDATION: BUY!")
+print("RECOMMENDATION REASON: TODO")
+print("-------------------------")
+print("HAPPY INVESTING!")
+print("-------------------------")
+
+#also prompt the user to specify additional inputs such as 1. Risk Tolerance, among others
 
 #Process a GET request to AlphaVantage API to gt stock data
 #If sotck data for symbol is not found return "not data found"
